@@ -7,7 +7,7 @@ const readEmployees = async (
   next: NextFunction,
 ) => {
   try {
-    const employees = await Employee.findAll();
+    const employees = await Employee.scope(['withDetails']).findAll();
 
     res.status(200).json({
       success: true,

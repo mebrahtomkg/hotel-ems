@@ -1,5 +1,5 @@
 import { Request, Response, NextFunction } from 'express';
-import { Employee } from '@/models';
+import { Department, Employee, Role } from '@/models';
 import { employeeSchema } from '@/schemas';
 
 const addEmployee = async (req: Request, res: Response, next: NextFunction) => {
@@ -29,6 +29,26 @@ const addEmployee = async (req: Request, res: Response, next: NextFunction) => {
       return;
     }
 
+    if (departmentId) {
+      const dept = await Department.findByPk(departmentId);
+      if (!dept) {
+        res.status(404).json({
+          message: `Department does not exist with id: ${departmentId}`,
+        });
+        return;
+      }
+    }
+
+    if (roleId) {
+      const role = await Role.findByPk(roleId);
+      if (!role) {
+        res.status(404).json({
+          message: `Role does not exist with id: ${roleId}`,
+        });
+        return;
+      }
+    }
+
     const employee = await Employee.create({
       email,
       firstName,
@@ -38,9 +58,13 @@ const addEmployee = async (req: Request, res: Response, next: NextFunction) => {
       roleId,
     });
 
+    const fullEmployeeData = await Employee.scope(['withDetails']).findByPk(
+      employee.id,
+    );
+
     res.status(201).json({
       success: true,
-      data: employee.toJSON(),
+      data: fullEmployeeData?.toJSON(),
       message: 'employee added successfully',
     });
   } catch (err) {

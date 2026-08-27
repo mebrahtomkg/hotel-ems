@@ -43,7 +43,15 @@ Attendance.belongsTo(Employee, {
 // Scope to easily fetch an employee with their department and role
 Employee.addScope('withDetails', {
   include: [
-    { model: Department, as: 'department' },
-    { model: Role, as: 'role' },
+    {
+      model: Department,
+      as: 'department',
+      required: false,
+    },
+    {
+      model: Role,
+      as: 'role',
+      required: false,
+    },
   ],
 });

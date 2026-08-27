@@ -56,7 +56,9 @@ const updateEmployee = async (
       return;
     }
 
-    const updatedEmployee = await Employee.findByPk(employeeId);
+    const updatedEmployee = await Employee.scope(['withDetails']).findByPk(
+      employeeId,
+    );
 
     res.status(200).json({
       success: true,
