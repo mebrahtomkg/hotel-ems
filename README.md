@@ -45,6 +45,11 @@ _Note: Timestamps (`hireDate`, `startTime`, `endTime`, `clockInTime`, `clockOutT
 
 The API exposes the following RESTful endpoints:
 
+### System & Payroll
+
+- `GET /` - Health check route to verify backend status and database connectivity
+- `GET /payroll` - Generate payroll report
+
 ### Employees
 
 - `GET /employees` - Retrieve all employees with their department and role
@@ -52,12 +57,33 @@ The API exposes the following RESTful endpoints:
 - `PATCH /employees/:id` - Update an existing employee
 - `DELETE /employees/:id` - Remove an employee (Cascades to shifts and attendance)
 
-### Other Resources (CRUD)
+### Departments
 
-- `GET /departments`, `POST /departments`, etc.
-- `GET /roles`, `POST /roles`, etc.
-- `GET /shifts`, `POST /shifts`, etc.
-- `GET /attendances`, `POST /attendances`, etc.
+- `GET /departments` - Retrieve all departments
+- `POST /departments` - Add a new department
+- `PUT /departments/:id` - Update an existing department
+- `DELETE /departments/:id` - Remove a department
+
+### Roles
+
+- `GET /roles` - Retrieve all roles
+- `POST /roles` - Add a new role
+- `PUT /roles/:id` - Update an existing role
+- `DELETE /roles/:id` - Remove a role
+
+### Shifts
+
+- `GET /shifts` - Retrieve all shifts
+- `POST /shifts` - Add a new shift
+- `PUT /shifts/:id` - Update an existing shift
+- `DELETE /shifts/:id` - Remove a shift
+
+### Attendance
+
+- `GET /attendances` - Retrieve all attendance records
+- `POST /attendances` - Add a new attendance record
+- `PUT /attendances/:id` - Update an existing attendance record
+- `DELETE /attendances/:id` - Remove an attendance record
 
 ## Important Decisions
 
@@ -82,8 +108,30 @@ Clone the repository and install the dependencies:
 pnpm install
 ```
 
-### 3. Configuration
+### 3. Running the Application
 
+- First do database Reset:
+
+```bash
+pnpm run db:reset
+```
+
+- Development Mode:
+
+```bash
+pnpm run dev
+```
+
+- Production Build:
+
+```bash
+pnpm run build
+pnpm start
+```
+
+### 4. Configuration
+
+The app works outof the box with no configuration. But it can be configured for flexibility.
 Create a .env file in the root directory of the project and paste the following configuration. Adjust the values as needed:
 
 ```env
@@ -104,25 +152,4 @@ SQLITE_DATABASE_DIR=/path/to/your/directory
 # PostgreSQL Database URI
 # Required and usefull only if DATABASE_DIALECT is set to 'postgres'
 POSTGRES_DATABASE_URI=postgresql://user:password@host:port/database
-```
-
-### 4. Running the Application
-
-- First do database Reset:
-
-```bash
-pnpm run db:reset
-```
-
-- Development Mode:
-
-```bash
-pnpm run dev
-```
-
-- Production Build:
-
-```bash
-pnpm run build
-pnpm start
 ```
