@@ -9,6 +9,37 @@
   },
   "item": [
     {
+      "name": "payrollReport",
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      },
+      "request": {
+        "method": "GET",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://localhost:3000/payroll",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "3000",
+          "path": [
+            "payroll"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
       "name": "employeeAdd",
       "request": {
         "method": "POST",

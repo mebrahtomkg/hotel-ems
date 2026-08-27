@@ -48,7 +48,8 @@ The API exposes the following RESTful endpoints:
 ### System & Payroll
 
 - `GET /` - Health check route to verify backend status and database connectivity
-- `GET /payroll` - Generate payroll report
+
+- `GET /payroll` - Generate payroll report. **This endpoint fulfills the challenge requirement for "one non-trivial query or report that provides useful information."** It uses Sequelize aggregation functions to calculate total hours worked from attendance logs, counts late incidents, and estimates payout by combining this data with the employee's role and hourly rate.
 
 ### Employees
 
@@ -129,7 +130,11 @@ pnpm run build
 pnpm start
 ```
 
-### 4. Configuration
+### 4. Testing the API with Postman
+
+I have exported a **Postman** collection in a file named `Postman-API-Tests.postman_collection.json` containing all API tests for the endpoints described above. Anyone can simply import this collection into Postman to instantly try out and test the API functionality (CRUD operations for employees, roles, departments, shifts, and attendance).
+
+### 5. Configuration
 
 The app works outof the box with no configuration. But it can be configured for flexibility.
 Create a .env file in the root directory of the project and paste the following configuration. Adjust the values as needed:
