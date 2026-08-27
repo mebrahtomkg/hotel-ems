@@ -11,9 +11,10 @@ const updateShift = async (req: Request, res: Response, next: NextFunction) => {
     const shiftId = parseInt(req.params.id, 10);
 
     if (!isPositiveInteger(shiftId)) {
-      return res.status(401).json({
+      res.status(401).json({
         message: 'Invalid shift id',
       });
+      return;
     }
 
     const parseResult = shiftUpdateSchema.safeParse(req.body);
