@@ -1,3 +1,4 @@
+import payrollReport from '@/controllers/payrollReport';
 import { Employee } from '@/models';
 import express, { NextFunction, Request, Response } from 'express';
 
@@ -15,5 +16,7 @@ router.get('/', async (_req: Request, res: Response, next: NextFunction) => {
     next(err);
   }
 });
+
+router.get('/payroll', payrollReport);
 
 export default router;
