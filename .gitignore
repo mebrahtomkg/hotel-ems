@@ -1,0 +1,9 @@
+/node_modules/
+/dist/
+
+/database/
+
+/.env
+
+/hotel-ems.sublime-project
+/hotel-ems.sublime-workspace

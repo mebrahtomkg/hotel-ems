@@ -1,0 +1,35 @@
+{
+  "$schema": "./node_modules/@biomejs/biome/configuration_schema.json",
+  "formatter": {
+    "enabled": false
+  },
+  "assist": {
+    "actions": {
+      "source": {
+        "organizeImports": "off"
+      }
+    }
+  },
+  "linter": {
+    "enabled": true,
+    "domains": {
+      "project": "recommended",
+      "react": "recommended"
+    },
+    "rules": {
+      "recommended": true,
+      "correctness": {
+        "noUnusedVariables": "warn",
+        "useExhaustiveDependencies": "warn"
+      },
+      "style": {
+        "useImportType": "off",
+        "noUnusedTemplateLiteral": "off"
+      }
+    }
+  },
+  "files": {
+    "includes": ["**", "!dist"],
+    "experimentalScannerIgnores": ["dist"]
+  }
+}
